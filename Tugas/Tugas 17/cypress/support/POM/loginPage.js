@@ -1,20 +1,7 @@
 class loginPage {
 
-    // membuka halaman
     visit() {
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    }
-
-    titleLoginCheck() {
-        cy.get('h5').should('contain', 'Login').and('be.visible')
-    }
-
-    buttonLoginCheck() {
-        cy.get("button[type='submit']").should('be.visible')
-    }
-
-    linkForgotPasswordCheck() {
-        cy.get('.oxd-text.oxd-text--p.orangehrm-login-forgot-header').should('be.visible')
     }
 
     inputUsername(username) {
@@ -22,7 +9,9 @@ class loginPage {
     }
 
     inputPassword(password) {
-        cy.get("input[placeholder='Password']").should('be.visible').type(password)
+        cy.get("input[placeholder='Password']")
+            .should('be.visible')
+            .type(password)
     }
 
     clickbuttonLogin() {
@@ -45,9 +34,23 @@ class loginPage {
         this.inputUsername(username)
 
         cy.get("input[placeholder='Password']")
-            .should('be.visible')
             .type(`${password}{enter}`)
+    }
+
+    verifyDashboard(){
+        cy.url().should('include', '/dashboard')
+    }
+
+    loginValid(username, password) {
+
+        this.visit()
+
+        this.inputUsername(username)
+        this.inputPassword(password)
+        this.clickbuttonLogin()
+
+        this.verifyDashboard()
     }
 }
 
-export default new loginPage
+export default new loginPage()

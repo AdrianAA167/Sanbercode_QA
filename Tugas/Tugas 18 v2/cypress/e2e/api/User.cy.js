@@ -213,7 +213,7 @@ describe('TS02 - Users API Testing', () => {
 
 
 
-    it('TC01 - Check Email Availability', () => {
+    it('TC09 - Check Email Availability', () => {
 
         cy.request({
             method: 'POST',

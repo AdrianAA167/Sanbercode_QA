@@ -167,4 +167,76 @@ describe('TS02 - Users API Testing', () => {
 
     })
 
+    it('TC08 - Update user info id : 102', () => {
+        cy.request({
+            method: 'PUT',
+            url: 'https://api.escuelajs.co/api/v1/users/102',
+            body: {
+                email: 'johniy@mail.com',
+                name: 'janee'
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body.id).to.eq(102)
+            expect(response.body).to.have.property('email', 'johniy@mail.com');
+            expect(response.body).to.have.property('name', 'janee');
+            expect(response.duration).to.be.lessThan(1000); // cek durasi
+
+            cy.log(JSON.stringify(response.body))
+        });
+    });
+
+    it('TC08 - Update user info id : 103', () => {
+        cy.request({
+            method: 'PUT',
+            url: 'https://api.escuelajs.co/api/v1/users/103',
+            body: {
+                email: 'johnSen@mail.com',
+                name: 'janee'
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(200);
+            expect(response.body.id).to.eq(103)
+            expect(response.body).to.have.property('email', 'johnSen@mail.com');
+            expect(response.body).to.have.property('name', 'janee');
+            expect(response.duration).to.be.lessThan(1000);
+
+            cy.log(JSON.stringify(response.body))
+        });
+    });
+
+
+
+    it('TC01 - Check Email Availability', () => {
+
+        cy.request({
+            method: 'POST',
+            url: 'https://api.escuelajs.co/api/v1/users/is-available',
+            body: {
+                email: 'johnSenbbfasfas@mail.com'
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+
+            expect(response.status).to.eq(201);
+            expect(response.body).to.have.property('isAvailable');
+            expect(response.body.isAvailable).to.be.false;
+
+            cy.log(JSON.stringify(response.body));
+
+        });
+
+    });
+
+
+    
+
 })

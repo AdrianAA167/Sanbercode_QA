@@ -152,6 +152,26 @@ class RecruitmentPage {
             .should("be.visible").click()
     }
 
+    iconDeleteVacancyProfil(){
+        cy.get(":nth-child(1) > .oxd-table-row > :nth-child(6) > .oxd-table-cell-actions > :nth-child(1) > .oxd-icon")
+            .should("be.visible").click()
+    }
+
+    ButtonResetVacancy(){
+        cy.get(".oxd-button--ghost")
+        .should("be.visible").click()
+    }
+
+    iconEditVacancy(){
+        cy.get(":nth-child(1) > .oxd-table-row > :nth-child(6) > .oxd-table-cell-actions > :nth-child(2) > .oxd-icon")
+            .should("be.visible").click()
+    }
+
+
+
+
+
+
     Candidate() {
         cy.get("body > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)")
             .should("be.visible")
@@ -162,7 +182,9 @@ class RecruitmentPage {
         cy.url().should('include', '/addCandidate')
     }
 
-
+    verifyEditVacancyPage(){
+        cy.url().should('include', "/addJobVacancy")
+    }
 
 
 
